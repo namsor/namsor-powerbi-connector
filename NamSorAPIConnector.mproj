@@ -40,6 +40,9 @@
     <Compile Include="NamSorAPIConnector.pq">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="client_secret">
+      <SubType>Content</SubType>
+    </Compile>
     <Content Include="NamSorAPIConnector.query.pq">
       <SubType>Code</SubType>
     </Content>

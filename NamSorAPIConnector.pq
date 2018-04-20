@@ -1,52 +1,67 @@
-﻿section HelloWorldWithDocs;
+﻿section NamSorAPIConnector;
 
-[DataSource.Kind="HelloWorldWithDocs", Publish="HelloWorldWithDocs.Publish"]
-shared HelloWorldWithDocs.Contents = Value.ReplaceType(HelloWorldImpl, HelloWorldType);
+client_secret = Text.FromBinary(Extension.Contents("client_secret"));
 
-HelloWorldType = type function (
-    message as (type text meta [
-        Documentation.FieldCaption = "Message",
-        Documentation.FieldDescription = "Text to display",
-        Documentation.SampleValues = {"Hello world", "Hola mundo"}
+[DataSource.Kind="NamSorAPIConnector", Publish="NamSorAPIConnector.Publish"]
+shared NamSorAPIConnector.Gender = Value.ReplaceType(GenderImpl, GenderAPIType);
+
+GenderAPIType = type function (
+    optional firstName as (type text meta [
+        Documentation.FieldCaption = "First Name",
+        Documentation.FieldDescription = "The First Name(s) incuding Middle Name(s)",
+        Documentation.SampleValues = {"John", "Maria"}
     ]),
-    optional count as (type number meta [
-        Documentation.FieldCaption = "Count",
+    optional lastName as (type text meta [
+        Documentation.FieldCaption = "Last Name",
+        Documentation.FieldDescription = "The Family Name / Surname / Last Name(s)",
+        Documentation.SampleValues = {"Smith", "Rossini"}
+    ]),
+    optional countryIso2 as (type text meta [
+        Documentation.FieldCaption = "Country (ISO2 code)",
         Documentation.FieldDescription = "Number of times to repeat the message",
-        Documentation.AllowedValues = { 1, 2, 3 }
+        Documentation.SampleValues = {"us","it"}
     ]))
     as table meta [
-        Documentation.Name = "Hello - Name",
-        Documentation.LongDescription = "Hello - Long Description",
+        Documentation.Name = "NamSor Gender",
+        Documentation.LongDescription = "Infer Gender from Name",
         Documentation.Examples = {[
-            Description = "Returns a table with 'Hello world' repeated 2 times",
-            Code = "HelloWorldWithDocs.Contents(""Hello world"", 2)",
-            Result = "#table({""Column1""}, {{""Hello world""}, {""Hello world""}})"
+            Description = "Infer likely gender from firstName, lastName",
+            Code = "NamSorAPIConnector.Gender(""John"",""Smith"")",
+            Result = "male"
         ],[
-            Description = "Another example, new message, new count!",
-            Code = "HelloWorldWithDocs.Contents(""Goodbye"", 1)",
-            Result = "#table({""Column1""}, {{""Goodbye""}})"
+            Description = "Infer likely gender from firstName, lastName and geographic context",
+            Code = "NamSorAPIConnector.Gender(""Elena"",""Rossini"",""it"")",
+            Result = "female"
         ]}
     ];
 
-HelloWorldImpl = (message as text, optional count as number) as table =>
+GenderImpl = (optional firstName as text, optional lastName as text, optional countryIso2 as text) as text =>
     let
-        _count = if (count <> null) then count else 5,
-        listOfMessages = List.Repeat({message}, _count),
-        table = Table.FromList(listOfMessages, Splitter.SplitByNothing())
+        apiKey = Extension.CurrentCredential()[Key],
+        jsonGender = Json.Document(Web.Contents("https://api.namsor.com/onomastics/api/json/gender/" & firstName & "/" & lastName,
+             [
+                 Headers = [#"X-Channel-Secret"=client_secret,#"X-Channel-User"=apiKey]
+             ]
+        )),
+         #"genderResult" = jsonGender[gender] //Record.ToTable(jsonGender)
     in
-        table;
+        #"genderResult";
 
 // Data Source Kind description
-HelloWorldWithDocs = [
+NamSorAPIConnector = [
     Authentication = [
-        Implicit = []
-    ]//,
-    //Label = "Hello World With Docs"
+        
+        Key = [
+            KeyLabel = "NamSor API Key (ex: namsor.com/john.smith@company.com/123456)",
+            Label = "NamSor API Key"
+        ]
+    ],
+    Label = "NamSor API"
 ];
 
 // Data Source UI publishing description
-HelloWorldWithDocs.Publish = [
+NamSorAPIConnector.Publish = [
     Beta = true,
     Category = "Other",
-    ButtonText = { "Hello World With Docs", "Provides an example of how to provide function documentation" }
+    ButtonText = { "NamSor API", "Infer gender or cultural origin/ethnicity from a personal name." }
 ];
