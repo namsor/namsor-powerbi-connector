@@ -1,0 +1,30 @@
+patrik|karlsson
+matteo luigi|bianchi
+patrick|o’donovan
+peter|schwaiger
+paul|griffiths
+lászló|trócsányi
+jørn neergaard|larsen
+salvatore|sanfilippo
+pekka|hakala
+giuseppe|casella
+tomas|karpavicius
+maria|barbosa
+lászló|lóránt keresztes
+jakob|thomsen
+jorge|vitorino
+andreas|mylonas
+cristian|ghinea
+francisco|perez canado
+ewa|synowiec
+georgios|markopouliotis
+miroslaw|piotrowski
+nikolaos|panagiotopoulos
+georgios|tsitsopoulos
+georgios|iakovou
+ioannis|amanatidis
+frances|fitzgerald
+karsten uno|petersen
+manuel|lopez escudero
+morten helveg|petersen
+pavel|svoboda
