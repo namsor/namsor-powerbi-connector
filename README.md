@@ -24,7 +24,7 @@ TODO
 TODO
 
 ## Additional Links and Resources
-* [Data Connector Technical Reference](docs/m-extensions.md)
+* [Data Connector Technical Reference](https://github.com/Microsoft/DataConnectors)
 * [M Library Functions](https://msdn.microsoft.com/library/mt253322.aspx)
 * [M Language Specification](https://msdn.microsoft.com/library/mt807488.aspx)
 * [Power BI Developer Center](https://powerbi.microsoft.com/developers/)

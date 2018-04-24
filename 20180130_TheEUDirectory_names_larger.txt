@@ -1,0 +1,883 @@
+patrik|karlsson
+matteo luigi|bianchi
+patrick|o’donovan
+peter|schwaiger
+paul|griffiths
+lászló|trócsányi
+jørn neergaard|larsen
+salvatore|sanfilippo
+pekka|hakala
+giuseppe|casella
+tomas|karpavicius
+maria|barbosa
+lászló|lóránt keresztes
+jakob|thomsen
+jorge|vitorino
+andreas|mylonas
+cristian|ghinea
+francisco|perez canado
+ewa|synowiec
+georgios|markopouliotis
+miroslaw|piotrowski
+nikolaos|panagiotopoulos
+georgios|tsitsopoulos
+georgios|iakovou
+ioannis|amanatidis
+frances|fitzgerald
+karsten uno|petersen
+manuel|lopez escudero
+morten helveg|petersen
+pavel|svoboda
+domenico|gambacorta
+krzysztof|jurgiel
+lászló|simon
+nikolaos|zaimis
+katarzyna|kacperczyk
+nikos|androulakis
+steen bording|andersen
+ivan|jakovcic
+massimo|rostagno
+paolo|bressan
+niels|erik søndergaard
+miguel|viegas
+andrea|di carlo
+krzysztof|kozlowski
+pedro|marques
+mariusz|blaszczak
+lászlóné|németh
+pawel|herczynski
+francisco|orozco dopico
+andrzej|nowakowski
+patrick|walsh
+wolfgang|reinhart
+levente|magyar
+kestutis|sadauskas
+rafael|lopez sanchez
+béla|kovács
+vincenzo|greco
+giuseppe|castiglione
+jarmo|oikarinen
+konstantin|konstantinou
+juha|sipilä
+sofia|ribeiro
+katarzyna|szychowska
+pierre|schmitt
+janis|trupovnieks
+paolo|corradino
+ivan|vukic
+alessandro|calza
+agnieszka|gregorczyk
+andrea|orlando
+janis|duklavs
+aivars|okmanis
+fernando|garcía sánchez
+costas|mavrides
+friedrich|braeuer
+josip|buljevic
+niall|o'higgins
+andrzej|rudka
+pawel|karbownik
+pedro|assuncao
+cormac|murphy
+andrzej|konieczny
+marcin|skrzypek
+zsolt|németh
+henrik ringbæk|madsen
+jose antonio|gutierrez fons
+oana-alexandra|popescu
+luigi|la marca
+kristian|jensen
+vincenzo|amendola
+jose luis|pacheco
+carlos|martins
+ioannis|dimolitsas
+georg|pfeifer
+jaroslaw|kalinowski
+pawel|adamowicz
+lászló|felkai
+slawomir|tokarski
+carlos|pinto de sá
+antonio|aresu
+lászló|tasnádi
+elisabeth|köstinger
+manuel|perez espin
+attila|györgy
+jadwiga|wisniewska
+per bødker|andersen
+koen|geens
+georgios|kyrtsos
+anna|ekström
+francesco|pigliaru
+hans|dahlgren
+carlos|costa
+eriks|dauksts
+istván|dankó
+joão|sousa
+nikolaos|milionis
+manuel|dueñas
+tomas|daukantas
+ádám zoltán|kovács
+juan|suarez
+nerijus|rudaitis
+laszlo|sipos
+philippe|vleminckx
+erik|nielsen
+pierre|petit
+tatiana|apostoliuc
+csaba|dömötör
+sándor|pintér
+alessandro|boschi
+sten frimodt|nielsen
+pawel|grzybowski
+piotr|glinski
+denitsa|nikolova
+ryszard|czarnecki
+dimitrios|tenezakis
+carlos|godinho
+mircea|diaconu
+teresa|pereira
+richard|ashworth
+anna|grzybowska
+daniela-ioana|popescu
+gabor mihaly|nagy
+agneta|karlsson
+dorota|karczewska
+leonids|salcevics
+nikolaos|paraskevopoulos
+algirdas|butkevicius
+guido|de clercq
+hans|nilsson
+luigi|morgano
+rimantas|vaitkus
+pekka|myllymäki
+stefano|iannitti
+tamas|szucs
+anastasios|petropoulos
+francisco|peñaranda fernandez
+dimitrios|mardas
+michael|fuchs
+zsolt|szabó
+arunas|butkevicius
+max|andersson
+viorel|serbanescu
+francesco|de feo
+mindaugas|sinkevicius
+tomas|žilinskas
+karl|falkenberg
+angelo|tosetti
+fernando|carbajo
+sándor|kovács
+zhivko|todorov
+carlo|pettinelli
+mircea|dumitru
+francesca|beltrame
+patrick|hamilton
+jerzy|kwiecinski
+ioannis|kaltsas
+marcell|bíró
+józsef|bacskai
+henryk|kowalczyk
+zoltán|molnár
+andrea|bartolini
+pietro|puricella
+jose antonio|lopez sanchez
+nikolaos|kotzias
+kim|eling
+jaroslaw|pietras
+jiri|zimola
+anna|zalewska
+paolo|bergamaschi
+peter|gajdoš
+pawel|busiakiewicz
+györgyi|lengyel
+isabelle|brusselmans
+cornelis|visser
+ivaylo|dimitrov
+dimo|stoyanov
+tomasz|zdzikot
+juha|auvinen
+ante|babic
+domenico|manzione
+wolfgang|brandstetter
+stanislaw|szwed
+luís manuel|teixeira da costa
+joaquin|fernandez martin
+algirdas|genevicius
+vasile|dumitrescu
+francisco|merchan cantos
+marcin|warchol
+jan|mareš
+elzbieta|bojanowska
+per|petersen
+nikolay|nenchev
+atanaska|nikolova
+agnieszka|kozlowska-rajewicz
+carmen|lópez ruiz
+peteris|zilgalvis
+malin|björk
+alessandro|pettini
+patrick|cassidy
+mary|mitchell o’connor
+vincenzo|de luca
+georgi|kostov
+flemming|sorensen
+miguel|gomes
+dirk|pauwels
+karel|bartak
+dariusz|wróbel
+stefano|ciccarello
+wojciech|wiewiorowski
+gintaras|klimavicius
+mindaugas|pakstys
+antónio|carneiro
+krister|andersson
+elmars|kronbergs
+enrico|traversa
+piotr|bartoszewicz-malicki
+izabela|wisniewska
+erik|nilsson
+andrew|mitchell
+paolo|ciccarelli
+francisco|guerra
+saulius|girdauskas
+jose|botella serrano
+benedikt|luyckx
+paolo|brizzi
+charlotte|svensson
+zsuzsanna|kovacs
+alessandro|piccioli
+pawel|szuba
+peter|versteeg
+peter|sørensen
+cecilia|malmström
+piotr|nowak
+elena|neculcea
+antonio|carrascosa
+giovanni|fracchia
+stuart|rowlands
+piotr|wozny
+róbert|dudás
+stefano|signore
+christian|weinberger
+teresa|ribeiro
+józsef|villányi
+dariusz|chmiel
+krzysztof|czabanski
+pierre|amilhat
+krzysztof|maruszewski
+philippe|de backer
+alessandro|mariani
+joakim|larsson
+attila|kiss
+andreas|larsson
+ángel luis|sánchez muñoz
+magdalena|andersson
+juan|fernandez trigo
+morten|jensen
+américo|pereira
+patrick|costello
+lászló|szabó
+wojciech|falkowski
+margarita|nikolova
+maciej|popowski
+józsef|nagy
+petr|ježek
+juan|pallares
+koen|vervaeke
+istván|nagy
+lars løkke|rasmussen
+manuel|del castillo
+jose|labastida
+barbara|brandtner
+francesco|albinati
+mikko|huttunen
+barbora|strnadova
+giovanni|buttarelli
+piotr|ogonowski
+marie|hansen
+mohammed|amri
+pia ahrenkilde|hansen
+aurel|trandafir
+mihai|turcanu
+alessandro|chiocchetti
+isabelle|van damme
+william|o'leary
+tomislav|boban
+jose|izarra aguado
+pawel|kaleta
+giovanni|de santi
+arturas|norkevicius
+horia|teodorescu
+vytautas|grubliauskas
+anders|risberg
+maria|echevarria
+flavius|popa
+juha|heikkilä
+francesco|albore
+marco|d'ambrosio
+vlad|voiculescu
+manuel|magalhaes
+alois|stöger
+carlos|miguel
+stavros|stavrinides
+jesper|fisker
+pekka|henttu
+wolfgang|mueller
+attila|gemes
+john|sweeney
+veronique|de jonghe
+georgios|patoulis
+róbert|szabó
+morgan|johansson
+sergejs|maksimovs
+francisco|quevedo
+paolo|alberti
+carmen|hilario
+max|jensen
+isabel|luque sanchez
+janis|upenieks
+dimitrios|papadimoulis
+sándor|fazekas
+annika|näslund
+päivi|seppänen
+ioannis|dragasakis
+wolfgang|schmidt
+franz|schausberger
+juan jose|lopez lledo
+vidmantas|mackevicius
+csaba|balogh
+mateusz|kochanowski
+manuel|valls
+manuel|rodriguez vico
+tomislav|tolušic
+andreja|potocnik
+florin|lupescu
+grzegorz|minczakiewicz
+david|o'neill
+guy|van den eede
+krisztina|morvai
+georgios|chouliarakis
+francisco javier|perez aparicio
+ciprian|andronache
+ioannis|kasoulidis
+massimo|federici
+algirdas|vrubliauskas
+koen|van dyck
+juan carlos|gonzález
+james|whitworth
+jorge|gomes
+ioannis|mouzalas
+mária|mayerová
+antonio|scalzo
+esben lunde|larsen
+pawel|zamojski
+aleksandrs|lielmežs
+poul runge|nielsen
+fernando|perez jimenez
+krasimir|zhivkov
+francisco|lopes
+piotr|olowski
+riccardo|nencini
+pedro|de lima
+massimo|paolucci
+liliana|rodrigues
+manuel|pleguezuelo alonso
+erwin|pröll
+georg|schütte
+jane strange|nielsen
+sune|hansen
+ioannis|boutaris
+jozef|stefanik
+slawomir|sosnowski
+alexander|popov
+mária|kolíková
+carlos|coelho
+pier giuseppe|rizza
+andrzej|szweda-lewandowski
+george|mathioudakis
+istván|ujhelyi
+erling|nielsen
+gábor|simon
+pekka|nurminen
+jose luis|rufas quintana
+tomas|mackevicius
+jirí|pospíšil
+martin|smejkal
+lars mitek|pedersen
+urmas|reinsalu
+giuseppe|rinaldi
+pedro|silva pereira
+marcin|trojanowski
+andris|jaunsleinis
+morten|løkkegaard
+karel|blaha
+jose|gonzalez holguera
+juan|martinez guillen
+giuseppe|bertoli
+andrew|gardner
+andrius|kupcinskas
+miguel|morgado
+henrik|studsgaard
+panagiotis|sgouridis
+ádám|kósa
+jesper schou|hansen
+nikolaos|xydakis
+marek|wozniak
+normunds|vasarins
+carsten|rasmussen
+zoltán|varga
+fernando|arroyo redondo
+john schmidt|andersen
+piotr|szymanski
+joão|costa
+dimitrios|giotakos
+michael|sønderskov
+marc|hansen
+attila|pál
+otto|heinz
+joaquin|aguado alonso
+katarzyna|glowala
+ana carla|pereira
+luigi|cappelletti
+giuseppe|abbamonte
+giovanni|bidoglio
+krzysztof|kwasniewicz
+francesco|ronchi
+slawomir|mazurek
+pearse|o'donohue
+andreas|papaconstantinou
+thomas|carroll
+jens|brøchner
+stefano|de leo
+nikolaos|chiotakis
+afzal|khan
+savvas|papasavvas
+nikolaos|petras
+francisco|peyro llopis
+dorthe|andersen
+mary|mccaughey
+pedro antonio|sánchez lópez
+dimitris|avramopoulos
+nathalie|blancquaert
+peder|jensen
+jose javier|fernandez fernandez
+marco|pecoraro
+gallo|gueye
+paolo|colantonio
+dimitar|stefanov
+antonio|ranieri
+fernando|araújo
+giovanni|ardizzone
+christian|holzleitner
+pier luigi|gilibert
+jukka|vesala
+dobromir|dobrev
+javier|lopez ariza
+constantin|deaconescu
+wojciech|kowalski
+peter|aagaard
+tatiana|dimitrova
+demetris|vryonides
+cornelia|gheorghiu
+francesca|di mauro
+andreas|asiotis
+vytautas|vigelis
+andrew|owen-griffiths
+tünde|szabó
+georgi|pirinski
+ioannis|natsinas
+gediminas|onaitis
+csaba|molnár
+andrea|cozzolino
+zoltán|ónodi-szucs
+agnieszka|kazmierczak
+carl johan|sonesson
+franz|obermayr
+pedro|cervilla
+anna|johansson
+dimitrios|gratsias
+michael|scannell
+joao|figueiredo
+søren|nielsen
+stefan|olsson
+francesco|mattina
+carlo|corazza
+giuseppe|corda
+guntis|belevics
+dimo|ivanov
+josef|doppelbauer
+eleni|theocharous
+carlo|bittarelli
+georgios|christophi
+ioannis|zografos
+nikolaos|papanikolaou
+francisco|garcia moran
+nikolaos|filis
+carlo|pettinato
+francesco|di massa
+krzysztof|czekalowski
+niklas|johansson
+jaime|silva
+antonio|soria ramirez
+giovanni|la via
+piotr|tulej
+christian|schmidt
+kestutis|žilionis
+adrian|mircea
+mihály|varga
+janis|eglits
+katarzyna|smyk
+paolo|cesarini
+ioannis|balafas
+giovanni|di carlo
+peter|van dalen
+giuseppe|carone
+wolfgang|streitenberger
+francisco|javier padilla olivares
+joão|azevedo
+paolo|mengozzi
+friedrich|kitschelt
+dimitrios|katsanidis
+marie|zvolská
+margarida|marques
+roberto|gualtieri
+saulius|jakimavicius
+pedro nuno|santos
+david|wilkinson
+jacek|pasternak
+jesus|gomez
+piotr|serafin
+james|o'donnell
+jess have|nielsen
+tomasz piotr|poreba
+juan luis|requejo pages
+traian|ungureanu
+franz|rieger
+jesper|svenningsen
+tomasz|kozlowski
+pietro|cappeddu
+mikael|stenström
+uldis|krastins
+gheorghe|lascu
+krzysztof|zielke
+jiri|kubicek
+nikolaos|chountis
+david|mcallister
+petr|hrdlicka
+dimitrios|triantafyllou
+björn|larsson
+urmas|kruuse
+dimitrios|vitsas
+timo|pesonen
+friedrich|wieland
+dorte|hansen
+tomislav|panenic
+malgorzata|laksander
+ioannis|sgouros
+elzbieta|bienkowska
+andris|kesteris
+attila|lajos
+joão|ferreira
+lászló|ignéczi
+janusz|wojciechowski
+raimonds|bricis
+jan|zahradil
+joão|leão
+james|sweeney
+nikolaos|pappas
+giuseppe|d’amico
+antonio|almagro
+francesco|mazzaferro
+jaroslaw|zielinski
+tomáš|novotný
+marta|ferreira de carvalho
+raffaele|cattaneo
+catherine|byrne
+jorge|costa oliveira
+luis|berenguer
+antónio|pereira
+piotr|pawel zajaczkowski
+tomasz|szatkowski
+antonio|figueira
+olivier|luyckx
+wladyslaw|piskorz
+pedro|ribeiro
+piotr|calbecki
+paolo|iannuccelli
+agnieszka|skuratowicz
+franz|pietsch
+thomas|oberreiter
+karl|pichelmann
+mercedes|ortuño
+krzysztof|bernacki
+delia|popescu
+ylva|johansson
+erich|unterwurzacher
+janis|vitolinš
+jiri|svarc
+nathalie|ilunga
+arkadiusz|godlewski
+salvatore|d'acunto
+giuseppe|siani
+mercedes|garcia perez
+tomislav|ivic
+uffe toudal|pedersen
+lars bay|larsen
+agnieszka|bidzinska
+svatopluk|nemecek
+antonio|di giulio
+rafal|romanowski
+indrek|saar
+ciprian|bucur
+ján|ferencák
+anders|neergaard
+john|o'rourke
+antonio|tizzano
+zoltán|kovács
+marek|olszewski
+troels lund|poulsen
+ian|andersen
+carlo|fidanza
+maciej|kopec
+ivaylo|ivanov
+joanna|szychowska
+pietro|russo
+michele|piergiovanni
+francesco|frapiccini
+harald|sonnberger
+ioannis|kourakis
+andreas|antoniades
+dimitrios|athanasiadis
+jános|nagy
+jose luis|bilbao guerrero
+piotr|antoni switalski
+roberto|ridolfi
+androulla|ioannou
+rimantas|sinkevicius
+georgios|yannoussis
+antti|liikkanen
+paolo|lombardo
+valdis|dombrovskis
+anders|henriksson
+stephen|mccafferty
+rihards|kozlovskis
+ion|prioteasa
+maria|de lurdes rodrigues
+alessandro|turrini
+evangelos|apostolou
+jeroen|hooijer
+peter|eriksson
+kristian|knudsen
+lukasz|broniewski
+manuel|valdivia benzal
+henrik|nielsen
+mihails|kozlovs
+agnieszka|nyka
+jakub|kopriva
+pascale|beeckmans
+janis|garisons
+karel|novotný
+anders|vilhelmsson
+irena|georgieva
+giuseppe|menchi
+olli-pekka|heinonen
+maris|kucinskis
+andreas|papadopoulos
+geert|de baere
+david|galloway
+anne mette|vestergaard
+pier antonio|panzeri
+pietro|ducci
+giedrius|mozuraitis
+koen|lenaerts
+gábor zsolt|pataki
+frank|lee
+nikolaos|apostolidis
+janis|reirs
+henrik|qvist
+algirdas|stoncaitis
+daniela|gheorghe
+francesco|drudi
+endre|juhász
+krzysztof|hetman
+janis|baiks
+paul|nemitz
+thomas|brandtner
+gintaras|morkunas
+antonio|vicente
+wolfgang|burtscher
+malgorzata|wasilewska
+ioannis|giogkarakisargyropoulos
+przemyslaw|miklaszewicz
+tanya|hristova
+hristo|kirilov
+giuseppe|di pangrazio
+roberto|pappalardo
+olivier|hansen
+wolfgang|kern
+anna|kaczmarek
+cecilia|wikström
+anna|krzyzanowska
+manuel|fernández ponce
+andreas|schwarz
+vincenzo|bianco
+ioannis|ganoulis
+georgi|slavov
+michael|o'flaherty
+mary|shields
+luigi|sandrin
+dimitrios|kalogeropoulos
+bodil|nielsen
+georg|haeusler
+michael|murphy
+maciej|markiewicz
+philippe|van damme
+abdoul|diallo
+jesus|villasante
+sandor|kovacs
+mantas|stanevicius
+paulo|oliveira
+janusz|lewandowski
+antonio|gentile
+patrick|o'flynn
+george|georghiou
+dimitrios|papaggelopoulos
+attilio|pacifici
+jesper|madsen
+gerhard|grill
+fritz|jaeckel
+agnieszka|kudlinska
+dimitar|radev
+juan|marcos
+joão|delgado
+nicola|de michelis
+jacek|bogucki
+krzysztof|michalkiewicz
+jános|lázár
+gerard|de graaf
+guillaume|lecomte
+marco|malacarne
+august|götzfried
+alexander|kornezov
+ioannis|malekos
+audrius|navikas
+zoltán|németh
+paolo|martinelli
+vítor|proença
+victor|negrescu
+janis|iesalnieks
+antonio|anselmi
+giuseppe|angelini
+paavo|väyrynen
+susanne|nikolajsen
+vytautas|kanevicius
+tibor|szanyi
+jozef|kamenický
+niels|fischer
+costas|hadjikakou
+alessandro|rainoldi
+ivan|aleksiev
+paolo|stancanelli
+manuel|delgado
+david|ringrose
+péter|bokor
+antonio|victoria sanchez
+jeroen|reijnen
+krisztina|nagy
+nikos|giannopoulos
+alessandro|annoni
+françois|van den berghe
+pierre|delsaux
+mats|andersson
+piotr|dardzinski
+manuel|dos santos
+david|shakespeare
+péter|szijjártó
+tsvyatko|georgiev
+szabolcs|takács
+fredrik|lindholm
+javier|fernández fernández
+józsef|pálinkás
+andrzej|grzyb
+thomas|obermayr
+giuseppe|varacalli
+wolfgang|schobesberger
+zoltan|csehi
+francisco|caballero sanz
+piotr|warczynski
+ewa|szymanska
+giuseppe|scognamiglio
+francesco|contesso
+pawel|brzezicki
+nikolay|nikolov
+andris|petersons
+mircea|radulescu
+marjan|pogacnik
+paolo|gentiloni
+andrei|popescu
+miguel|cabrita
+dirk|stockmans
+pieter|van nuffel
+tamás|deutsch
+tsvetan|dimitrov
+radu|negrea
+francisco|martínez vázquez
+orsolya|balogh
+teodor|stoychev
+kestutis|vaitukaitis
+jose|eduardo leandro
+ioannis|tsironis
+mary|mccarthy
+adam|banaszak
+erik|flyvholm
+tamás|vargha
+michael hunnicke|jensen
+raimonds|bergmanis
+georgios|karakatsanis
+samo|jereb
+francisco|fonseca morillo
+katalin|novák
+ioannis|dimitrakopoulos
+arunas|kazlauskas
+kim|freidberg
+paulo|santos
+ana sofia|silva
+françois|willekens
+andrew|mcdowell
+phillip lee  dr phillip|lee
+hermann|winkler
+anthony|humphreys
+janusz|bielecki
+james|illingworth
+joão paulo|rebelo
+georgi|chakarov
+csilla|fekete
+vincenzo|cardarelli
+anders|rasmussen
+antonio|miceli
+karel|hruska
+inese|vaidere
+wilhelm|molterer
+christos|stylianides
+andrejs|pantelejevs
+lászló|palkovics
+joão|vasconcelos
+anna|záborská
+jose maria|criado garcia
+mohamed|ali
+josef|novotný
+vincenzo|rondinella
+javier|moreno sanchez
+corina|popescu
+enrico|zanetti
+carmen|naranjo sanchez
+slawomir|klosowski
+carlo|rusconi
+domenico|rossi
+paulo alexandre|ferreira
+stine|larsen
+christos|economou
+ulf|bergström
+zoltán|balog
+edgars|rinkevics
+terhi|lehtonen
