@@ -19,7 +19,7 @@ Names can be genderized either one-by-one, or by pages of a few hundred names. R
 
 This is a example of [data visualization](https://app.powerbi.com/view?r=eyJrIjoiMmZkZjhiNTYtMzZkYi00ODk3LWFmMjAtMzhhNjQzOGU3M2IyIiwidCI6ImYzN2YxMjc3LTJiZTEtNDdjZi1hNGJmLTQ0MjJiMWM4YTU0MiIsImMiOjl9 "Gender Gap among M&A professionals") after appending gender to an Excel file.
 
-[[https://github.com/namsor/namsor-powerbi-connector/blob/master/img/2017_GenderGap_in_MandA_v1.png|alt=GenderGap]]
+![GenderGap](https://github.com/namsor/namsor-powerbi-connector/blob/master/img/2017_GenderGap_in_MandA_v1.png)
 
 ## Appending Origin / Ethnicity to your data datables
 NamSor Origin or Diaspora API work in similar way to the Gender API.
