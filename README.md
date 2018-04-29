@@ -14,16 +14,18 @@ Enrich your PowerBI Data with Gender and Origin/Ethnicity : any table that has p
 7. Copy the NamSor API Key from your account page into Power BI Desktop and click save. Once you do that, Power BI Desktop will begin communicating with NamSor API to enrich your data model with Gender and Origin/Ethnicity data. You can view it by clicking on the "NamSor" report.
 There's a current limitation with custom data connectors. You cannot "Publish" this report to the Power BI web app. To view your data in the Power BI web app, please install NamSor from AppSource (this is a pending functionality).
 
-## Making a Gender Gap report
+## Appending Gender to your data tables
 Names can be genderized either one-by-one, or by pages of a few hundred names. Read the [Wiki](https://github.com/namsor/namsor-powerbi-connector/wiki "Get Started") to get started.
 
-This is a example of [data visualization](https://app.powerbi.com/view?r=eyJrIjoiMmZkZjhiNTYtMzZkYi00ODk3LWFmMjAtMzhhNjQzOGU3M2IyIiwidCI6ImYzN2YxMjc3LTJiZTEtNDdjZi1hNGJmLTQ0MjJiMWM4YTU0MiIsImMiOjl9 "Gender Gap among M&A professionals").
+This is a example of [data visualization](https://app.powerbi.com/view?r=eyJrIjoiMmZkZjhiNTYtMzZkYi00ODk3LWFmMjAtMzhhNjQzOGU3M2IyIiwidCI6ImYzN2YxMjc3LTJiZTEtNDdjZi1hNGJmLTQ0MjJiMWM4YTU0MiIsImMiOjl9 "Gender Gap among M&A professionals") after appending gender to an Excel file.
 
-## Making a Diversity of Origin report
-NamSor Origin or Diaspora API work in similar way to the Gender API, but produce likely country of origin, ethnicity based on personal names. 
+[[https://github.com/namsor/namsor-powerbi-connector/blob/master/img/2017_GenderGap_in_MandA_v1.png|alt=GenderGap]]
+
+## Appending Origin / Ethnicity to your data datables
+NamSor Origin or Diaspora API work in similar way to the Gender API.
 
 ## Monitoring API Usage
-The API usage can be monitored directly from PowerBI. There is an example dashboard in the provided template.
+The API usage can be monitored directly from PowerBI. There is an example dashboard in the provided template, NamSor-PowerBI-Template.pbix
 
 ## Additional Links and Resources
 * [Data Connector Technical Reference](https://github.com/Microsoft/DataConnectors)
