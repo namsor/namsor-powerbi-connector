@@ -21,7 +21,7 @@ This is a example of [data visualization](https://app.powerbi.com/view?r=eyJrIjo
 
 ![GenderGap](https://github.com/namsor/namsor-powerbi-connector/blob/master/img/2017_GenderGap_in_MandA_v1.png)
 
-## Appending Origin / Ethnicity to your data datables
+## Appending Origin / Ethnicity to your data tables
 NamSor Origin or Diaspora API work in similar way to the Gender API.
 
 ## Monitoring API Usage
