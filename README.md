@@ -14,9 +14,6 @@ Enrich your PowerBI Data with Gender and Origin/Ethnicity : any table that has p
 7. Copy the NamSor API Key from your account page into Power BI Desktop and click save. Once you do that, Power BI Desktop will begin communicating with NamSor API to enrich your data model with Gender and Origin/Ethnicity data. You can view it by clicking on the "NamSor" report.
 There's a current limitation with custom data connectors. You cannot "Publish" this report to the Power BI web app. To view your data in the Power BI web app, please install NamSor from AppSource (this is a pending functionality).
 
-## Example of a Gender Gap Report
-<iframe width="800" height="600" src="https://app.powerbi.com/view?r=eyJrIjoiYzgxMjdmNTAtMjA2Zi00N2UwLWIwZGYtYzE1ZjFlODZhMjI1IiwidCI6ImYzN2YxMjc3LTJiZTEtNDdjZi1hNGJmLTQ0MjJiMWM4YTU0MiIsImMiOjl9" frameborder="0" allowFullScreen="true"></iframe>
-
 ## Making a Gender Gap report
 TODO
 
