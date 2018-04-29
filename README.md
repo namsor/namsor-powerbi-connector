@@ -15,13 +15,18 @@ Enrich your PowerBI Data with Gender and Origin/Ethnicity : any table that has p
 There's a current limitation with custom data connectors. You cannot "Publish" this report to the Power BI web app. To view your data in the Power BI web app, please install NamSor from AppSource (this is a pending functionality).
 
 ## Making a Gender Gap report
-TODO
+Names can be genderized either one-by-one, or by pages of a few hundred names. Read the Wiki to get started.
+https://github.com/namsor/namsor-powerbi-connector/wiki
+
+This is a example of data visualization produced using the Gender Batch API Connector.
+
+https://app.powerbi.com/view?r=eyJrIjoiMmZkZjhiNTYtMzZkYi00ODk3LWFmMjAtMzhhNjQzOGU3M2IyIiwidCI6ImYzN2YxMjc3LTJiZTEtNDdjZi1hNGJmLTQ0MjJiMWM4YTU0MiIsImMiOjl9
 
 ## Making a Diversity of Origin report
-TODO
+NamSor Origin or Diaspora API work in similar way to the Gender API, but produce likely country of origin, ethnicity based on personal names. 
 
 ## Monitoring API Usage
-TODO
+The API usage can be monitored directly from PowerBI. There is an example dashboard in the provided template.
 
 ## Additional Links and Resources
 * [Data Connector Technical Reference](https://github.com/Microsoft/DataConnectors)
