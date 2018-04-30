@@ -11,6 +11,7 @@ batch_size = 500;
 shared NamSorAPIConnector.GenderBatch = Value.ReplaceType(GenderBatchImpl, GenderBatchAPIType);
 [DataSource.Kind="NamSorAPIGenderConnector", Publish="NamSorAPIGenderConnector.Publish"]
 shared NamSorAPIConnector.Gender = Value.ReplaceType(GenderImpl, GenderAPIType);
+
 [DataSource.Kind="NamSorAPIOriginBatchConnector", Publish="NamSorAPIOriginBatchConnector.Publish"]
 shared NamSorAPIConnector.OriginBatch = Value.ReplaceType(OriginBatchImpl, OriginBatchAPIType);
 [DataSource.Kind="NamSorAPIOriginConnector", Publish="NamSorAPIOriginConnector.Publish"]
@@ -20,6 +21,10 @@ shared NamSorAPIConnector.Origin = Value.ReplaceType(OriginImpl, OriginAPIType);
 shared NamSorAPIConnector.DiasporaBatch = Value.ReplaceType(DiasporaBatchImpl, DiasporaBatchAPIType);
 [DataSource.Kind="NamSorAPIDiasporaConnector", Publish="NamSorAPIDiasporaConnector.Publish"]
 shared NamSorAPIConnector.Diaspora = Value.ReplaceType(DiasporaImpl, DiasporaAPIType);
+
+[DataSource.Kind="NamSorAPIParseBatchConnector", Publish="NamSorAPIParseBatchConnector.Publish"]
+shared NamSorAPIConnector.ParseBatch = Value.ReplaceType(ParseBatchImpl, ParseBatchAPIType);
+
 
 [DataSource.Kind="NamSorAPIUsageHistoryConnector", Publish="NamSorAPIUsageHistoryConnector.Publish"]
 shared NamSorAPIConnector.UsageHistory = Value.ReplaceType(UsageHistoryImpl, UsageHistoryAPIType);
@@ -346,6 +351,72 @@ DiasporaImpl = (optional firstName as text, optional lastName as text) as text =
         #"diasporaResult";
 
 
+ParseBatchAPIType = type function (
+    optional inputTable as (type table meta [
+        Documentation.FieldCaption = "Input Table",
+        Documentation.FieldDescription = "The input table must have firstName, lastName columns.",
+        Documentation.SampleValues = {"myCustomerTable"}
+    ]),
+    optional fullNameColumn as (type text meta [
+        Documentation.FieldCaption = "Full Name Column",
+        Documentation.FieldDescription = "The name of column containing : The Full Name",
+        Documentation.SampleValues = {"firstName"}
+    ]),
+    optional nameFormatTip as (type text meta [
+        Documentation.FieldCaption = "Name Format Tip (ORDER_FNLN, ORDER_LNFN, ORDER_FNLN_OR_LNFN, ORDER_FNLN_OR_LNFN_ALLSAME) ",
+        Documentation.FieldDescription = "nameFormatTip:ORDER_FNLN means that the order has to be firstName, lastName (the API will only choose where to split the name).",
+        Documentation.SampleValues = {"ORDER_FNLN", "ORDER_LNFN", "ORDER_FNLN_OR_LNFN", "ORDER_FNLN_OR_LNFN_ALLSAME"}
+    ])
+    )
+    as table meta [
+        Documentation.Name = "Append Parsed Names to Table",
+        Documentation.LongDescription = "Infer Parse Names (firstName, lastName) from FullName(s) in a Table",
+        Documentation.Examples = {[
+            Description = "Infer Parsed Names (firstName, lastName)",
+            Code = "NamSorAPIConnector.ParseBatch(""John H. Smith"",""ORDER_FNLN"")",
+            Result = "male"
+        ],[
+            Description = "Infer Parsed Names (firstName, lastName)",
+            Code = "NamSorAPIConnector.ParseBatch(""Rossini"",""Elena"",""ORDER_LNFN"")",
+            Result = "female"
+        ]}
+    ];
+
+// BUG/ANNOYANCE : when params are not optional - there keeps asking crendentials ... when they are, there is an error after cnnecting
+ParseBatchImpl = (optional inputTable as table, optional fullNameColumn as text, optional nameFormatTip as text) as table =>
+    let
+        apiKey = Extension.CurrentCredential()[Key],
+        #"Changed Type" = Table.TransformColumnTypes(inputTable,{{fullNameColumn, type text}}),
+        #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{fullNameColumn, "fullName"}}),
+        #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"fullName"}),
+        #"DistinctNames" = Table.Distinct(#"Removed Other Columns"),
+        #"DistinctNamesNonNull" = Table.SelectRows(#"DistinctNames", each ([fullName] <> null)),
+        #"IndexedNames" = Table.AddIndexColumn(#"DistinctNamesNonNull", "id", 1, 1),
+        #"IndexedNamesWithBatchID" = Table.AddColumn(#"IndexedNames", "batchid", each Number.RoundDown([id]/batch_size)),
+
+        // https://social.technet.microsoft.com/Forums/en-US/0f9fec02-4469-4c56-92ec-00d46b26b3fc/how-to-automateparameterizeloop-power-query?forum=powerquery
+        Batch.Results = (batchid) => let 
+                    #"Batch" = Table.SelectRows(#"IndexedNamesWithBatchID", each ([batchid] = batchid)),
+		            #"JsonOutput" = Json.FromValue(#"Batch"),
+		            #"OutputText" = "{""nameFormatTip"":" & nameFormatTip & ",""names"":" & Text.FromBinary(#"JsonOutput") & "}",
+		            #"jsonParse" = Json.Document(Web.Contents("https://api.namsor.com/onomastics/api/json/parseList",
+				             [
+					             Headers = [#"X-Channel-Secret"="63m6Yx0zLNAM33krdm3SORekGn8CFB",#"X-Channel-User"=apiKey],
+					             Content=Text.ToBinary(#"OutputText")
+				             ]
+			            ))
+                    in
+                        #"jsonParse",
+
+        #"Grouped Rows" = Table.Group(#"IndexedNamesWithBatchID", {"batchid"}, {{"Count", each Table.RowCount(_), type number}}),
+        #"Batched" = Table.AddColumn(#"Grouped Rows", "json", each Batch.Results([batchid])),
+        #"Expanded json" = Table.ExpandRecordColumn(#"Batched", "json", {"names"}, {"json.names"}),
+        #"Expanded json.names" = Table.ExpandListColumn(#"Expanded json", "json.names"),
+        #"ExpandedResult" = Table.ExpandRecordColumn(#"Expanded json.names", "json.names", {"id", "nameFormat", "title", "firstName", "lastName", "midName", "countryIso2", "fullName", "score"}, {"id", "nameFormat", "title", "firstName", "lastName", "midName", "countryIso2", "fullName", "score"})
+    in
+        #"ExpandedResult";
+
+
 UsageHistoryAPIType = type function (
     optional serviceName as (type text meta [
         Documentation.FieldCaption = "Service Name",
@@ -521,6 +592,25 @@ NamSorAPIDiasporaConnector.Publish = [
     ButtonText = { "NamSor Diaspora API", "Infer ldiaspora/likely ethnicity from a personal name (appends one column, row by row)." }
 ];
 
+
+
+// Data Source Kind description
+NamSorAPIParseBatchConnector = [
+    Authentication = [
+        Key = [
+            KeyLabel = "NamSor API Key (ex: namsor.com/john.smith@company.com/123456)",
+            Label = "NamSor API Key"
+        ]
+    ],
+    Label = "NamSor API"
+];
+
+// Data Source UI publishing description
+NamSorAPIParseBatchConnector.Publish = [
+    Beta = is_beta,
+    Category = category,
+    ButtonText = { "NamSor Parse Batch API", "Parse a fullName in firstName, lastName (batch processing, appends several columns)." }
+];
 
 // Data Source Kind description
 NamSorAPIUsageHistoryConnector = [
