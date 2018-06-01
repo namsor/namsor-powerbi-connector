@@ -92,9 +92,12 @@ GenderBatchImpl = (optional inputTable as table, optional firstNameColumn as tex
         #"Batched" = Table.AddColumn(#"Grouped Rows", "json", each Batch.Results([batchid])),
         #"Expanded json" = Table.ExpandRecordColumn(#"Batched", "json", {"names"}, {"json.names"}),
         #"Expanded json.names" = Table.ExpandListColumn(#"Expanded json", "json.names"),
-        #"ExpandedResult" = Table.ExpandRecordColumn(#"Expanded json.names", "json.names", {"id", "firstName", "lastName", "gender", "scale"}, {"id", "firstName", "lastName", "gender", "scale"})
+        #"ExpandedResult" = Table.ExpandRecordColumn(#"Expanded json.names", "json.names", {"id", "firstName", "lastName", "gender", "scale"}, {"id", "firstName", "lastName", "gender", "scale"}),
+        #"Duplicated FN" = Table.DuplicateColumn(#"ExpandedResult", "firstName", "firstName - Copy"),
+        #"Duplicated LN" = Table.DuplicateColumn(#"Duplicated FN", "lastName", "lastName - Copy"),
+        #"Merged Columns" = Table.CombineColumns(#"Duplicated LN",{"firstName - Copy", "lastName - Copy"},Combiner.CombineTextByDelimiter("#(tab)", QuoteStyle.None),"fullNameTabJoin")
     in
-        #"ExpandedResult";
+        #"Merged Columns";
 
 GenderAPIType = type function (
     optional firstName as (type text meta [
@@ -202,9 +205,13 @@ OriginBatchImpl = (optional inputTable as table, optional firstNameColumn as tex
         #"Batched" = Table.AddColumn(#"Grouped Rows", "json", each Batch.Results([batchid])),
         #"Expanded json" = Table.ExpandRecordColumn(#"Batched", "json", {"names"}, {"json.names"}),
         #"Expanded json.names" = Table.ExpandListColumn(#"Expanded json", "json.names"),
-        #"ExpandedResult" = Table.ExpandRecordColumn(#"Expanded json.names", "json.names", {"id", "firstName", "lastName", "country", "countryAlt", "score", "countryFirstName", "countryLastName", "scoreFirstName", "scoreLastName", "subRegion", "region", "topRegion", "countryName", "script"}, {"id", "firstName", "lastName", "country", "countryAlt", "score", "countryFirstName", "countryLastName", "scoreFirstName", "scoreLastName", "subRegion", "region", "topRegion", "countryName", "script"})
+        #"ExpandedResult" = Table.ExpandRecordColumn(#"Expanded json.names", "json.names", {"id", "firstName", "lastName", "country", "countryAlt", "score", "countryFirstName", "countryLastName", "scoreFirstName", "scoreLastName", "subRegion", "region", "topRegion", "countryName", "script"}, {"id", "firstName", "lastName", "country", "countryAlt", "score", "countryFirstName", "countryLastName", "scoreFirstName", "scoreLastName", "subRegion", "region", "topRegion", "countryName", "script"}),
+        #"Duplicated FN" = Table.DuplicateColumn(#"ExpandedResult", "firstName", "firstName - Copy"),
+        #"Duplicated LN" = Table.DuplicateColumn(#"Duplicated FN", "lastName", "lastName - Copy"),
+        #"Merged Columns" = Table.CombineColumns(#"Duplicated LN",{"firstName - Copy", "lastName - Copy"},Combiner.CombineTextByDelimiter("#(tab)", QuoteStyle.None),"fullNameTabJoin")
     in
-        #"ExpandedResult";
+        #"Merged Columns";
+	
 
  OriginAPIType = type function (
     optional firstName as (type text meta [
@@ -307,10 +314,13 @@ DiasporaBatchImpl = (optional inputTable as table, optional firstNameColumn as t
         #"Batched" = Table.AddColumn(#"Grouped Rows", "json", each Batch.Results([batchid])),
         #"Expanded json" = Table.ExpandRecordColumn(#"Batched", "json", {"names"}, {"json.names"}),
         #"Expanded json.names" = Table.ExpandListColumn(#"Expanded json", "json.names"),
-        #"ExpandedResult" = Table.ExpandRecordColumn(#"Expanded json.names", "json.names", {"id", "firstName", "lastName", "ethno", "ethnoAlt", "geoCountry", "geoCountryAlt", "score", "script"}, {"id", "firstName", "lastName", "ethno", "ethnoAlt", "geoCountry", "geoCountryAlt", "score", "script"})
-  in
-        #"ExpandedResult";
-
+        #"ExpandedResult" = Table.ExpandRecordColumn(#"Expanded json.names", "json.names", {"id", "firstName", "lastName", "ethno", "ethnoAlt", "geoCountry", "geoCountryAlt", "score", "script"}, {"id", "firstName", "lastName", "ethno", "ethnoAlt", "geoCountry", "geoCountryAlt", "score", "script"}),
+        #"Duplicated FN" = Table.DuplicateColumn(#"ExpandedResult", "firstName", "firstName - Copy"),
+        #"Duplicated LN" = Table.DuplicateColumn(#"Duplicated FN", "lastName", "lastName - Copy"),
+        #"Merged Columns" = Table.CombineColumns(#"Duplicated LN",{"firstName - Copy", "lastName - Copy"},Combiner.CombineTextByDelimiter("#(tab)", QuoteStyle.None),"fullNameTabJoin")
+    in
+        #"Merged Columns";
+	
  DiasporaAPIType = type function (
     optional firstName as (type text meta [
         Documentation.FieldCaption = "First Name",
@@ -412,9 +422,12 @@ ParseBatchImpl = (optional inputTable as table, optional fullNameColumn as text,
         #"Batched" = Table.AddColumn(#"Grouped Rows", "json", each Batch.Results([batchid])),
         #"Expanded json" = Table.ExpandRecordColumn(#"Batched", "json", {"names"}, {"json.names"}),
         #"Expanded json.names" = Table.ExpandListColumn(#"Expanded json", "json.names"),
-        #"ExpandedResult" = Table.ExpandRecordColumn(#"Expanded json.names", "json.names", {"id", "nameFormat", "title", "firstName", "lastName", "midName", "countryIso2", "fullName", "score"}, {"id", "nameFormat", "title", "firstName", "lastName", "midName", "countryIso2", "fullName", "score"})
+        #"ExpandedResult" = Table.ExpandRecordColumn(#"Expanded json.names", "json.names", {"id", "nameFormat", "title", "firstName", "lastName", "midName", "countryIso2", "fullName", "score"}, {"id", "nameFormat", "title", "firstName", "lastName", "midName", "countryIso2", "fullName", "score"}),
+        #"Duplicated FN" = Table.DuplicateColumn(#"ExpandedResult", "firstName", "firstName - Copy"),
+        #"Duplicated LN" = Table.DuplicateColumn(#"Duplicated FN", "lastName", "lastName - Copy"),
+        #"Merged Columns" = Table.CombineColumns(#"Duplicated LN",{"firstName - Copy", "lastName - Copy"},Combiner.CombineTextByDelimiter("#(tab)", QuoteStyle.None),"fullNameTabJoin")
     in
-        #"ExpandedResult";
+        #"Merged Columns";
 
 
 UsageHistoryAPIType = type function (

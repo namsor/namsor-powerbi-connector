@@ -3,6 +3,10 @@ Power BI Desktop is a free, stand-alone application from Microsoft. You can down
 
 Enrich your PowerBI Data with Gender and Origin/Ethnicity : any table that has personal names can be enriched.
 
+Check you this video tutorial on producing a cool dashboard on the gender gap in the Film Industry, from IMDB 5000 dataset in data.world :
+
+[![NamSor PowerBI Connector Tutorial on YouTube](http://img.youtube.com/vi/YZ__4MPqNkw/0.jpg)](http://www.youtube.com/watch?v=YZ__4MPqNkw "NamSor PowerBI Connector Tutorial on YouTube")
+
 ## Installing the Connector
 
 1. Download and install the [Power BI Desktop](https://powerbi.microsoft.com/en-us/desktop/) application, if you haven't done so already.
