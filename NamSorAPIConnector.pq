@@ -10,7 +10,7 @@ batch_size = 100;
 [DataSource.Kind="NamSorAPIGenderBatchConnector", Publish="NamSorAPIGenderBatchConnector.Publish"]
 shared NamSorAPIConnector.GenderBatch = Value.ReplaceType(GenderBatchImpl, GenderBatchAPIType);
 
-[DataSource.Kind="NamSorAPIGenderGeoBatchConnector", Publish="NamSorAPIGenderBatchConnector.Publish"]
+[DataSource.Kind="NamSorAPIGenderGeoBatchConnector", Publish="NamSorAPIGenderGeoBatchConnector.Publish"]
 shared NamSorAPIConnector.GenderGeoBatch = Value.ReplaceType(GenderGeoBatchImpl, GenderGeoBatchAPIType);
 
 [DataSource.Kind="NamSorAPIGenderConnector", Publish="NamSorAPIGenderConnector.Publish"]
@@ -53,6 +53,9 @@ GenderBatchImpl = (optional inputTable as table, optional firstNameColumn as tex
         apiKey = Extension.CurrentCredential()[Key],
         #"Changed Type" = Table.TransformColumnTypes(inputTable,{{firstNameColumn, type text}, {lastNameColumn, type text}}),
         #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{firstNameColumn, "firstName"}, {lastNameColumn, "lastName"}}),        
+        #"Inserted Merged Column" = Table.AddColumn(#"Renamed Columns", "fullNameTabJoin1", each Text.Combine({[firstName], [lastName]}, "#(tab)"), type text),
+        
+        // BEGIN BATCH API CALL
         #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"firstName", "lastName"}),
         #"DistinctNames" = Table.Distinct(#"Removed Other Columns"),
         #"DistinctNamesNonNull" = Table.SelectRows(#"DistinctNames", each ([firstName] <> null) and ([lastName] <> null)),
@@ -81,9 +84,13 @@ GenderBatchImpl = (optional inputTable as table, optional firstNameColumn as tex
         #"ExpandedResult" = Table.ExpandRecordColumn(#"Expanded json.names", "json.personalNames", {"id", "firstName", "lastName", "likelyGender", "genderScale", "probabilityCalibrated", "score"}, {"id", "firstName", "lastName", "likelyGender", "genderScale", "probabilityCalibrated", "score"}),
         #"Duplicated FN" = Table.DuplicateColumn(#"ExpandedResult", "firstName", "firstName - Copy"),
         #"Duplicated LN" = Table.DuplicateColumn(#"Duplicated FN", "lastName", "lastName - Copy"),
-        #"Merged Columns" = Table.CombineColumns(#"Duplicated LN",{"firstName - Copy", "lastName - Copy"},Combiner.CombineTextByDelimiter("#(tab)", QuoteStyle.None),"fullNameTabJoin")
+        #"Merged Columns" = Table.CombineColumns(#"Duplicated LN",{"firstName - Copy", "lastName - Copy"},Combiner.CombineTextByDelimiter("#(tab)", QuoteStyle.None),"fullNameTabJoin2"),
+        // END BATCH API CALL
+
+        #"Merged Queries" = Table.NestedJoin(#"Inserted Merged Column", {"fullNameTabJoin1"}, #"Merged Columns", {"fullNameTabJoin2"}, "namsor", JoinKind.LeftOuter),
+        #"Expanded API" = Table.ExpandTableColumn(#"Merged Queries", "namsor", {"likelyGender", "genderScale", "probabilityCalibrated", "score"}, {"namsor.likelyGender", "namsor.genderScale", "namsor.probabilityCalibrated", "namsor.score"})
     in
-        #"Merged Columns";
+        #"Expanded API";
 
 GenderGeoBatchAPIType = type function (
     optional inputTable as (type table meta [
@@ -127,6 +134,9 @@ GenderGeoBatchImpl = (optional inputTable as table, optional firstNameColumn as 
         apiKey = Extension.CurrentCredential()[Key],
         #"Changed Type" = Table.TransformColumnTypes(inputTable,{{firstNameColumn, type text}, {lastNameColumn, type text}, {countryIso2Column, type text}}),
         #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{firstNameColumn, "firstName"}, {lastNameColumn, "lastName"}, {countryIso2Column, "countryIso2"}}),
+        #"Inserted Merged Column" = Table.AddColumn(#"Renamed Columns", "fullNameGeoTabJoin1", each Text.Combine({[firstName], [lastName], [countryIso2]}, "#(tab)"), type text),
+        
+        // BEGIN BATCH API CALL
         #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"firstName", "lastName","countryIso2"}),
         #"DistinctNames" = Table.Distinct(#"Removed Other Columns"),
         #"DistinctNamesNonNull" = Table.SelectRows(#"DistinctNames", each ([firstName] <> null) and ([lastName] <> null)),
@@ -156,10 +166,13 @@ GenderGeoBatchImpl = (optional inputTable as table, optional firstNameColumn as 
         #"Duplicated FN" = Table.DuplicateColumn(#"ExpandedResult", "firstName", "firstName - Copy"),
         #"Duplicated LN" = Table.DuplicateColumn(#"Duplicated FN", "lastName", "lastName - Copy"),
         #"Duplicated Cntry" = Table.DuplicateColumn(#"Duplicated LN", "countryIso2", "countryIso2 - Copy"),
-        #"Merged Columns" = Table.CombineColumns(#"Duplicated Cntry",{"firstName - Copy", "lastName - Copy", "countryIso2 - Copy"},Combiner.CombineTextByDelimiter("#(tab)", QuoteStyle.None),"fullNameTabCntryJoin")
-    in
-        #"Merged Columns";
+        #"Merged Columns" = Table.CombineColumns(#"Duplicated Cntry",{"firstName - Copy", "lastName - Copy", "countryIso2 - Copy"},Combiner.CombineTextByDelimiter("#(tab)", QuoteStyle.None),"fullNameGeoTabJoin2"),
 
+        // END BATCH API CALL
+        #"Merged Queries" = Table.NestedJoin(#"Inserted Merged Column", {"fullNameGeoTabJoin1"}, #"Merged Columns", {"fullNameGeoTabJoin2"}, "namsor", JoinKind.LeftOuter),
+        #"Expanded API" = Table.ExpandTableColumn(#"Merged Queries", "namsor", {"likelyGender", "genderScale", "probabilityCalibrated", "score"}, {"namsor.likelyGender", "namsor.genderScale", "namsor.probabilityCalibrated", "namsor.score"})
+    in
+        #"Expanded API";
 
 GenderAPIType = type function (
     optional firstName as (type text meta [
