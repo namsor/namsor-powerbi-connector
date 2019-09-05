@@ -2,8 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>
-    </ProjectGuid>
+    <ProjectGuid>{41dd245e-bc12-486c-a922-add05368fc4f}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>MyRootNamespace</RootNamespace>
     <AssemblyName>MyAssemblyName</AssemblyName>
@@ -40,7 +39,7 @@
     <Compile Include="NamSorAPIConnector.pq">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="client_secret">
+    <Compile Include="api_root">
       <SubType>Content</SubType>
     </Compile>
     <Content Include="NamSorAPIConnector.query.pq">
