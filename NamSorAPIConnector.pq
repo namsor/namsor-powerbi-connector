@@ -22,6 +22,11 @@ GenderBatchAPIType = type function (
         Documentation.FieldDescription = "The input table must have firstName, lastName columns.",
         Documentation.SampleValues = {"myCustomerTable"}
     ]),
+    optional idColumn as (type text meta [
+        Documentation.FieldCaption = "Unique Index Column",
+        Documentation.FieldDescription = "The name of the column containing : Unique Identifier",
+        Documentation.SampleValues = {"id"}
+    ]),
     optional firstNameColumn as (type text meta [
         Documentation.FieldCaption = "First Name Column",
         Documentation.FieldDescription = "The name of column containing : The First Name(s) incuding Middle Name(s)",
@@ -48,19 +53,17 @@ GenderBatchAPIType = type function (
     ];
 
 // BUG/ANNOYANCE : when params are not optional - there keeps asking crendentials ... when they are, there is an error after cnnecting
-GenderBatchImpl = (optional inputTable as table, optional firstNameColumn as text, optional lastNameColumn as text) as table =>
+GenderBatchImpl = (optional inputTable as table, optional idColumn as text, optional firstNameColumn as text, optional lastNameColumn as text) as table =>
     let
         apiKey = Extension.CurrentCredential()[Key],
-        #"Changed Type" = Table.TransformColumnTypes(inputTable,{{firstNameColumn, type text}, {lastNameColumn, type text}}),
-        #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{firstNameColumn, "firstName"}, {lastNameColumn, "lastName"}}),        
-        #"Inserted Merged Column" = Table.AddColumn(#"Renamed Columns", "fullNameTabJoin1", each Text.Combine({[firstName], [lastName]}, "#(tab)"), type text),
+        #"Changed Type" = Table.TransformColumnTypes(inputTable,{{idColumn, type text}, {firstNameColumn, type text}, {lastNameColumn, type text}}),
+        #"OriginalInput" = Table.RenameColumns(#"Changed Type",{{idColumn, "id"}, {firstNameColumn, "firstName"}, {lastNameColumn, "lastName"}}),        
         
         // BEGIN BATCH API CALL
-        #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"firstName", "lastName"}),
-        #"DistinctNames" = Table.Distinct(#"Removed Other Columns"),
-        #"DistinctNamesNonNull" = Table.SelectRows(#"DistinctNames", each ([firstName] <> null) and ([lastName] <> null)),
-        #"IndexedNames" = Table.AddIndexColumn(#"DistinctNamesNonNull", "id", 1, 1),
-        #"IndexedNamesWithBatchID" = Table.AddColumn(#"IndexedNames", "batchid", each Number.RoundDown([id]/batch_size)),
+        #"IdFnLn" = Table.SelectColumns(#"OriginalInput",{"id", "firstName", "lastName"}),
+        #"IdFnLnNonNull" = Table.SelectRows(#"IdFnLn", each ([firstName] <> null) and ([lastName] <> null) and ([id] <> null)),
+        #"IndexedNames" = Table.AddIndexColumn(#"IdFnLnNonNull", "seqId", 1, 1),
+        #"IndexedNamesWithBatchID" = Table.AddColumn(#"IndexedNames", "batchid", each Number.RoundDown([seqId]/batch_size)),
 
         // https://social.technet.microsoft.com/Forums/en-US/0f9fec02-4469-4c56-92ec-00d46b26b3fc/how-to-automateparameterizeloop-power-query?forum=powerquery
         Batch.Results = (batchid) => let 
@@ -82,12 +85,9 @@ GenderBatchImpl = (optional inputTable as table, optional firstNameColumn as tex
         #"Expanded json" = Table.ExpandRecordColumn(#"Batched", "json", {"personalNames"}, {"json.personalNames"}),
         #"Expanded json.names" = Table.ExpandListColumn(#"Expanded json", "json.personalNames"),
         #"ExpandedResult" = Table.ExpandRecordColumn(#"Expanded json.names", "json.personalNames", {"id", "firstName", "lastName", "likelyGender", "genderScale", "probabilityCalibrated", "score"}, {"id", "firstName", "lastName", "likelyGender", "genderScale", "probabilityCalibrated", "score"}),
-        #"Duplicated FN" = Table.DuplicateColumn(#"ExpandedResult", "firstName", "firstName - Copy"),
-        #"Duplicated LN" = Table.DuplicateColumn(#"Duplicated FN", "lastName", "lastName - Copy"),
-        #"Merged Columns" = Table.CombineColumns(#"Duplicated LN",{"firstName - Copy", "lastName - Copy"},Combiner.CombineTextByDelimiter("#(tab)", QuoteStyle.None),"fullNameTabJoin2"),
         // END BATCH API CALL
 
-        #"Merged Queries" = Table.NestedJoin(#"Inserted Merged Column", {"fullNameTabJoin1"}, #"Merged Columns", {"fullNameTabJoin2"}, "namsor", JoinKind.LeftOuter),
+        #"Merged Queries" = Table.NestedJoin(#"OriginalInput", {"id"}, #"ExpandedResult", {"id"}, "namsor", JoinKind.LeftOuter),
         #"Expanded API" = Table.ExpandTableColumn(#"Merged Queries", "namsor", {"likelyGender", "genderScale", "probabilityCalibrated", "score"}, {"namsor.likelyGender", "namsor.genderScale", "namsor.probabilityCalibrated", "namsor.score"})
     in
         #"Expanded API";
@@ -97,6 +97,11 @@ GenderGeoBatchAPIType = type function (
         Documentation.FieldCaption = "Input Table",
         Documentation.FieldDescription = "The input table must have firstName, lastName columns.",
         Documentation.SampleValues = {"myCustomerTable"}
+    ]),
+    optional idColumn as (type text meta [
+        Documentation.FieldCaption = "Unique Index Column",
+        Documentation.FieldDescription = "The name of the column containing : Unique Identifier",
+        Documentation.SampleValues = {"id"}
     ]),
     optional firstNameColumn as (type text meta [
         Documentation.FieldCaption = "First Name Column",
@@ -110,7 +115,7 @@ GenderGeoBatchAPIType = type function (
     ]),
     optional countryIso2Column as (type text meta [
         Documentation.FieldCaption = "Country (ISO2 code) Column",
-        Documentation.FieldDescription = "Assumed country of residence",
+        Documentation.FieldDescription = "The name of column containing : The country of residence",
         Documentation.SampleValues = {"US","IT"}
     ])
     )
@@ -129,19 +134,17 @@ GenderGeoBatchAPIType = type function (
     ];
 
 // BUG/ANNOYANCE : when params are not optional - there keeps asking crendentials ... when they are, there is an error after cnnecting
-GenderGeoBatchImpl = (optional inputTable as table, optional firstNameColumn as text, optional lastNameColumn as text, optional countryIso2Column as text) as table =>
+GenderGeoBatchImpl = (optional inputTable as table, optional idColumn as text, optional firstNameColumn as text, optional lastNameColumn as text, optional countryIso2Column as text) as table =>
     let
         apiKey = Extension.CurrentCredential()[Key],
-        #"Changed Type" = Table.TransformColumnTypes(inputTable,{{firstNameColumn, type text}, {lastNameColumn, type text}, {countryIso2Column, type text}}),
-        #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{firstNameColumn, "firstName"}, {lastNameColumn, "lastName"}, {countryIso2Column, "countryIso2"}}),
-        #"Inserted Merged Column" = Table.AddColumn(#"Renamed Columns", "fullNameGeoTabJoin1", each Text.Combine({[firstName], [lastName], [countryIso2]}, "#(tab)"), type text),
+        #"Changed Type" = Table.TransformColumnTypes(inputTable,{{idColumn, type text}, {firstNameColumn, type text}, {lastNameColumn, type text}, {countryIso2Column, type text}}),
+        #"OriginalInput" = Table.RenameColumns(#"Changed Type",{{idColumn, "id"}, {firstNameColumn, "firstName"}, {lastNameColumn, "lastName"}, {countryIso2Column, "countryIso2"}}),
         
         // BEGIN BATCH API CALL
-        #"Removed Other Columns" = Table.SelectColumns(#"Renamed Columns",{"firstName", "lastName","countryIso2"}),
-        #"DistinctNames" = Table.Distinct(#"Removed Other Columns"),
-        #"DistinctNamesNonNull" = Table.SelectRows(#"DistinctNames", each ([firstName] <> null) and ([lastName] <> null)),
-        #"IndexedNames" = Table.AddIndexColumn(#"DistinctNamesNonNull", "id", 1, 1),
-        #"IndexedNamesWithBatchID" = Table.AddColumn(#"IndexedNames", "batchid", each Number.RoundDown([id]/batch_size)),
+        #"IdFnLnGeo" = Table.SelectColumns(#"OriginalInput",{"id","firstName", "lastName","countryIso2"}),
+        #"IdFnLnGeoNonNull" = Table.SelectRows(#"IdFnLnGeo", each ([firstName] <> null) and ([lastName] <> null) and ([id] <> null) and ([countryIso2] <> null)),
+        #"IndexedNames" = Table.AddIndexColumn(#"IdFnLnGeoNonNull", "seqId", 1, 1),
+        #"IndexedNamesWithBatchID" = Table.AddColumn(#"IndexedNames", "batchid", each Number.RoundDown([seqId]/batch_size)),
 
         // https://social.technet.microsoft.com/Forums/en-US/0f9fec02-4469-4c56-92ec-00d46b26b3fc/how-to-automateparameterizeloop-power-query?forum=powerquery
         Batch.Results = (batchid) => let 
@@ -163,13 +166,9 @@ GenderGeoBatchImpl = (optional inputTable as table, optional firstNameColumn as 
         #"Expanded json" = Table.ExpandRecordColumn(#"Batched", "json", {"personalNames"}, {"json.personalNames"}),
         #"Expanded json.names" = Table.ExpandListColumn(#"Expanded json", "json.personalNames"),
         #"ExpandedResult" = Table.ExpandRecordColumn(#"Expanded json.names", "json.personalNames", {"id", "firstName", "lastName", "likelyGender", "genderScale", "probabilityCalibrated", "score"}, {"id", "firstName", "lastName", "likelyGender", "genderScale", "probabilityCalibrated", "score"}),
-        #"Duplicated FN" = Table.DuplicateColumn(#"ExpandedResult", "firstName", "firstName - Copy"),
-        #"Duplicated LN" = Table.DuplicateColumn(#"Duplicated FN", "lastName", "lastName - Copy"),
-        #"Duplicated Cntry" = Table.DuplicateColumn(#"Duplicated LN", "countryIso2", "countryIso2 - Copy"),
-        #"Merged Columns" = Table.CombineColumns(#"Duplicated Cntry",{"firstName - Copy", "lastName - Copy", "countryIso2 - Copy"},Combiner.CombineTextByDelimiter("#(tab)", QuoteStyle.None),"fullNameGeoTabJoin2"),
-
         // END BATCH API CALL
-        #"Merged Queries" = Table.NestedJoin(#"Inserted Merged Column", {"fullNameGeoTabJoin1"}, #"Merged Columns", {"fullNameGeoTabJoin2"}, "namsor", JoinKind.LeftOuter),
+
+        #"Merged Queries" = Table.NestedJoin(#"OriginalInput", {"id"}, #"ExpandedResult", {"id"}, "namsor", JoinKind.LeftOuter),
         #"Expanded API" = Table.ExpandTableColumn(#"Merged Queries", "namsor", {"likelyGender", "genderScale", "probabilityCalibrated", "score"}, {"namsor.likelyGender", "namsor.genderScale", "namsor.probabilityCalibrated", "namsor.score"})
     in
         #"Expanded API";
