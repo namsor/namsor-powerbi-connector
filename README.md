@@ -3,18 +3,18 @@ Power BI Desktop is a free, stand-alone application from Microsoft. You can down
 
 Enrich your PowerBI Data with Gender and Origin/Ethnicity : any table that has personal names can be enriched.
 
-Check you this video tutorial on producing a cool dashboard on the gender gap in the Film Industry, from IMDB 5000 dataset in data.world :
+Check you this video tutorial on producing a cool dashboard on the gender gap in the Film Industry, from IMDB 5000 dataset in data.world:
 
 [![NamSor PowerBI Connector Tutorial on YouTube](http://img.youtube.com/vi/YZ__4MPqNkw/0.jpg)](http://www.youtube.com/watch?v=YZ__4MPqNkw "NamSor PowerBI Connector Tutorial on YouTube")
 
 ## Installing the Connector
 
 1. Download and install the [Power BI Desktop](https://powerbi.microsoft.com/en-us/desktop/) application, if you haven't done so already.
-2. Start Power BI Desktop and find the "File > Options > Preview Features" section in the program options. Under "Preview features", ensure that "Custom data connectors" is enabled.
-3. Create a "[My Documents]\Microsoft Power BI Desktop\Custom Connectors" directory. Note: In the April 2018 version of Power BI Desktop or later, this directory is "[My Documents]\Power BI Desktop\Custom Connectors" or "[Documents]\Power BI Desktop\Custom Connectors".
+2. Start Power BI Desktop and find the "File > Options > Security" section in the program options. Under "Data Extensions", ensure that "Allow any extension" is enabled.
+3. Create a "[My Documents]\Microsoft Power BI Desktop\Custom Connectors" directory.
 4. Download the NamSor Custom Connector file [NamSorAPIConnector.mez](https://github.com/namsor/namsor-powerbi-connector/releases) and place it in this directory. If Power BI Desktop is running, you'll need to exit the program and restart it for this new connector to be found.
-5. Download the NamSor Power BI template file [NamSor-PowerBI-Template.pbix](https://github.com/namsor/namsor-powerbi-connector/blob/master/NamSor-PowerBI-Template.pbix?raw=true) and open it in Power BI Desktop. This template includes sample NamSor reports and data relations. It relies on the Data Connector to load and refresh it's data.
-6. You'll be prompted for a NamSor API Key upon startup. You can get a NamSor API Key from your NamSor Account page (https://api.namsor.com/).
+5. Under "Get Data > Online Services", you should see NamSor API connectors
+6. You'll be prompted for a NamSor API Key upon startup. You can get a free NamSor API Key from your NamSor Account page (https://www.namsor.com/).
 7. Copy the NamSor API Key from your account page into Power BI Desktop and click save. Once you do that, Power BI Desktop will begin communicating with NamSor API to enrich your data model with Gender and Origin/Ethnicity data. 
 8. If you run into a [PQ error : Please rebuild this data combination](https://github.com/namsor/namsor-powerbi-connector/issues/1), try Ignoring privacy level in File > Options and settings > Options and then Current File > Privacy.
 
@@ -29,7 +29,7 @@ This is a example of [data visualization](https://app.powerbi.com/view?r=eyJrIjo
 NamSor Origin or Diaspora API work in similar way to the Gender API.
 
 ## Monitoring API Usage
-The API usage can be monitored directly from PowerBI. There is an example dashboard in the provided template, NamSor-PowerBI-Template.pbix
+The API usage can be monitored directly from PowerBI. There is an example dashboard in the provided template.
 
 ## Additional Links and Resources
 * [Data Connector Technical Reference](https://github.com/Microsoft/DataConnectors)
